@@ -9,7 +9,7 @@ main {
     justify-content: center;
 }
 
-ul {
+article {
     list-style: none;
     display: grid;
     grid-template-rows: auto;
@@ -27,7 +27,7 @@ ul {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
-ul li {
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
