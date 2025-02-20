@@ -1,0 +1,26 @@
+{% render 'partials/head.liquid', title: 'Squad page' %}
+<script src="script.js"></script>
+
+<h1>Emoji Library</h1>
+
+<main>
+  <ul class="card-container">
+    {% for person in persons %}
+    <li class="flip-card">
+      <div class="flip-card-inner">
+        <!-- Front -->
+        <div class="flip-card-front">
+          <img src="{{ person.avatar }}" onerror="this.onerror=null; this.src='altperson.png';" alt="Profielfoto">
+          <h2 href="/student/{{ person.id }}">{{ person.name }}</h2>
+        </div>
+        <!-- Back -->
+        <div style="background-color: {{ person.fav_color }};" class="flip-card-back">
+          <p class="emoji">{{ person.fav_emoji }}</p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
+
+{% render 'partials/foot.liquid', squads: squads %}
