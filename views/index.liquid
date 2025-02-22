@@ -8,15 +8,16 @@
     {% for person in persons %}
     <li class="flip-card">
       <div class="flip-card-inner">
-        <!-- Front -->
+
         <div class="flip-card-front">
           <img src="{{ person.avatar }}" onerror="this.onerror=null; this.src='altperson.png';" alt="Profielfoto">
           <h2 href="/student/{{ person.id }}">{{ person.name }}</h2>
         </div>
-        <!-- Back -->
+
         <div style="background-color: {{ person.fav_color }};" class="flip-card-back">
           <p class="emoji">{{ person.fav_emoji }}</p>
         </div>
+        
       </div>
     </li>
     {% endfor %}
