@@ -60,9 +60,21 @@ app.get('/', async function (request, response) {
 })
 
 
-//////
+//
+let messages = []
 
-//////
+app.get('/berichten', async function (request, response) {
+  response.render('messages.liquid', {messages: messages})
+})
+
+app.post('/berichten', async function (request, response) {
+  messages.push(request.body.message)
+  response.redirect(303, '/berichten')
+
+
+  console.log("joehoe")
+})
+//
 
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
