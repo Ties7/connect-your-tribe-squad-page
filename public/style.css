@@ -101,3 +101,8 @@ h2 {
 .emoji {
     scale: 500%;
 }
+
+.flip-card:focus .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
