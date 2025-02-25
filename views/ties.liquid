@@ -1,0 +1,59 @@
+{% render 'partials/head.liquid' %}
+
+<main>
+    <section>
+        <h1>Filters</h1>
+        <ul>
+            <li><a href="?">Geen</a></li>
+            <li><a href="?show=fav_color">Kleur</a></li>
+            <li><a href="?show=fav_emoji">Emoji</a></li>
+            <li><a href="?show=birthdate">Verjaardag</a></li>
+        </ul>
+        {% if show %}
+            <p>Huidige filter: <strong>{{ show }}</strong></p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h1>Sorts</h1>
+        <ul>
+            <li><a href="?sort=name">A-Z</a></li>
+            <li><a href="?sort=-name">Z-A</a></li>
+        </ul>
+        {% if sort %}
+            <p>Huidige sort: <strong>{{ sort }}</strong></p>
+        {% endif %}
+    </section>
+
+    <ul>
+        {%  for person in persons %}
+            <li>
+                <h2>{{ person.name }}</h2>
+                <img src="{{ person.avatar }}" width="64" />
+
+                {% if person.fav_color %}
+                    <div style="background-color: {{ person.fav_color }}; height: 64px;"></div>
+                {% endif %}
+
+                {% if person.fav_emoji %}
+                    <div style="font-size: 64px;">{{ person.fav_emoji }}</div>
+                {% endif %}
+
+                {% if person.birthdate %}
+                    <div>Geboren op {{ person.birthdate }}</div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</main>
+
+<style>
+    .avatar img {
+        width: 5em;
+    }
+</style>
+<script>
+    
+</script>
+
+{% render 'partials/foot.liquid' %}

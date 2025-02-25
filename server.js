@@ -60,6 +60,28 @@ app.get('/', async function (request, response) {
 })
 
 
+const baseUrl = 'https://fdnd.directus.app/items/person/'
+const baseFilter = '{"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}}]}'
+
+app.get('/ties', async function (request, response) {
+  console.log(request.query);
+  
+  // Haal 'show' en 'sort' uit de url query (?show=...&sort=...)
+  const show = request.query.show;
+  const sort = request.query.sort ?? 'name'; // Gebruik 'name' als sort undefined is
+  
+  // Maak een aanpasbare (let) string met de fields die sowieso opgevraagd moeten worden
+  let fields = 'name,avatar';
+  if(show) fields += `,${show}`; // Als de 'show' query bestaat, voeg deze toe aan de fields
+
+  const person = await fetch(`${baseUrl}?sort=${sort}&fields=${fields}&filter=${baseFilter}`)
+  const personResponseJSON = await person.json()
+
+  // Render de template met {persons, show, sort} als variabelen
+  response.render('ties.liquid', { persons: personResponseJSON.data, show, sort })
+})
+
+
 //
 let messages = []
 
